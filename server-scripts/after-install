@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source /home/ec2-user/db_env_vars
+export NODE_ENV=production
+export RESOURCEROOT=/home/ec2-user/resources
+
+# Replace the old deployment files with the new ones
+rm -rf /home/ec2-user/backend-deployment
+cp -r /home/ec2-user/codedeploy-landingpad/back/ /home/ec2-user/backend-deployment
+
+cd /home/ec2-user/backend-deployment
+node node-app/index.js

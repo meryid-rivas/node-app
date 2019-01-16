@@ -1,3 +1,24 @@
 language: node_js
 node_js:
   "node"
+env:
+  - DDIR=deployment-dir
+before_deploy:
+  - zip -r $TRAVIS_COMMIT $(git ls-files)
+  - mkdir -p $DDIR
+  - cp $TRAVIS_COMMIT.zip $DDIR
+deploy:
+  - provider: s3
+    skip-cleanup: true
+    access_key_id: $user-id
+    secret_access_key: $user-secret
+    bucket: fleetr.jooycar.com
+    local-dir: $DDIR
+    upload-dir: "back/$TRAVIS_BRANCH"
+  - provider: codedeploy
+    access_key_id: $user-id
+    secret_access_key: $user-secret
+    bucket: fleetr.jooycar.com
+    key: "back/$TRAVIS_BRANCH/$TRAVIS_COMMIT.zip"
+    application: node-app
+    deployment_group: NodeDeployementGroup
