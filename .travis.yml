@@ -16,8 +16,8 @@ deploy:
     local-dir: $DDIR
     upload-dir: "back/$TRAVIS_BRANCH"
   - provider: codedeploy
-    access_key_id: $user-id
-    secret_access_key: $user-secret
+    access_key_id: $CLOUD_USER_ID
+    secret_access_key: $CLOUD_USER_SECRET
     bucket: fleetr.jooycar.com
     key: "back/$TRAVIS_BRANCH/$TRAVIS_COMMIT.zip"
     application: node-app
