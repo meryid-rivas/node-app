@@ -1,10 +1,13 @@
 #!/bin/bash
 
+source /home/ec2-user/.bash_profile
+
 # Replace the old deployment files with the new ones
 rm -rf /home/ec2-user/backend-deployment
 cp -r /home/ec2-user/codedeploy-landingpad/back/ /home/ec2-user/backend-deployment
 
 cd /home/ec2-user/backend-deployment
-echo "Testing output"
-echo "Output install: `/home/ec2-user/.nvm/versions/node/v11.6.0/bin/npm install`"
-/home/ec2-user/.nvm/versions/node/v11.6.0/bin/node index.js
+echo "Before install: `ls`"
+npm install
+echo "After install: `ls`"
+node index.js
