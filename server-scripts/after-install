@@ -5,5 +5,5 @@ rm -rf /home/ec2-user/backend-deployment
 cp -r /home/ec2-user/codedeploy-landingpad/back/ /home/ec2-user/backend-deployment
 
 cd /home/ec2-user/backend-deployment
-npm install
-node index.js
+/home/ec2-user/.nvm/versions/node/v11.6.0/bin/npm install
+/home/ec2-user/.nvm/versions/node/v11.6.0/bin/node index.js
